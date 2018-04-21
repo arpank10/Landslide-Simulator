@@ -8,10 +8,11 @@
  * Synopsis : This class belongs to the render video module.
  *            Shakes the camera with required power after few seconds of starting the scene to give 
  	      an experience of landslide.
- * Functions Supported : StartToInitializeRender() sets position of person in virtual world, vibration
+ * Functions Supported : Start() sets position of person in virtual world, vibration
  	     	         intensity and volume to be rendered in video appropriately.
 			 Update() sets the criteria for shaking of land simulation in the video.
-			 setVibration() sets the vibration intensity according to the user input.one of the vibration levels [0,1,2].
+			 setVibration() sets the vibration intensity according to the user input.one of the vibration 
+			 		levels [0,1,2].
 			 setStartingPositionOfPersonInTerrain() sets the position of the person in the video either near 
 			 		or far to the location of occurence of landslide.
 * Input Parameters : landslideVibrationMode(integer) - one of vibration intensity levels [0,1,2] as choosen by user.
@@ -61,7 +62,7 @@ public class RenderVideo : MonoBehaviour {
     Vector3 startPositionOfTheViewer;                                                     
 	
 	// Use this for initialization
-	void StartToInitializeRender () {
+	void Start () {
         	//Initializing the variables
 		viewer = Camera.main.transform;
 		startPositionOfTheViewer = viewer.localPosition;
