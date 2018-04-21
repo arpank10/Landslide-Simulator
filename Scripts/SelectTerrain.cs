@@ -36,7 +36,7 @@ public class SelectTerrain : MonoBehaviour {
     IEnumerator switchToVrAndStartTerrainExperience(int indexOfTerrain)
     {
         // Device names are lowercase, as returned by `XRSettings.supportedDevices`.
-        string desiredDevice = "cardboard"; // Or "cardboard".
+        string desiredDevice = "cardboard"; // Or "daydream".
 
         // Some VR Devices do not support reloading when already active
         if (System.String.Compare(XRSettings.loadedDeviceName, desiredDevice, true) != 0)
