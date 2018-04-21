@@ -63,7 +63,7 @@ public class HeadMovementControl : MonoBehaviour {
         {
             Vector3 forward = vrCamera.TransformDirection(Vector3.forward);// moves the person in forward directio
 	    // moves the person with defined speed
-            controllerObjectCorresponingToTheViewer.SimpleMove(forward * SPEEDOFTHEWALKINGPERSON);
+            controllerObjectCorresponingToTheViewer.SimpleMove(forward * speedofthewalkingperson);
         }
     }
  }
