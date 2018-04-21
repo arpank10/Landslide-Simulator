@@ -1,53 +1,56 @@
-﻿using System.Collections;
+﻿/*
+ * Module Name : Head Movement Control module
+ * Author : Arpan Konar
+ * Date created :14/04/2018
+ * Function : This class is a part of head movement control module. 
+ *            This enables the person to walk in the virtual world based on an a particular angle.
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Class name
 public class VRwalk : MonoBehaviour {
 
+    //This is the camera object which gives us the current position and direction in which to walk
     public Transform vrCamera;
-        
-    public float angle = 5.0f;
+    
+    //The person starts to walk in the virtual world when his head angle is more than this value
+    public float angleLimitAfterWhichPersonStartsWalking = 15.0f;
 
-    public float speed = 3.0f;
+    //Speed of the person walking is defined by this value
+    public float speedOfTheWalkingPerson = 3.0f;
 
-    public bool moveForward;
+    //A boolean value to determine if the person should be walking or not
+    public bool shouldThePersonBeWalking;
 
-    private CharacterController myController;
+    //The character controller which is to be transformed
+    private CharacterController controllerObjectCorresponingToTheViewer;
 
     // Use this for initialization
     void Start () {
-        myController = GetComponentInParent<CharacterController>();
+        //Getting the corresponding controller attached with the camera
+        controllerObjectCorresponingToTheViewer = GetComponentInParent<CharacterController>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        // ray which defines where the camera is pointing
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0));
-
-        // whenever ray hits an object "hit" changes
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
+        //The person walks only when his head is downward by an angle more than the defined angle and if he is above river level
+        if ( vrCamera.eulerAngles.x >= angleLimitAfterWhichPersonStartsWalking && vrCamera.eulerAngles.x < 90.0f && transform.position.y > 3.5f )
         {
-
-            // change state of "walking" when ray hits the ground objects
-            if (hit.collider.name.Contains("River"))
-            {
-                Debug.Log("HIT TERRAIN");
-            }
-        }
-        if ( vrCamera.eulerAngles.x >= angle && vrCamera.eulerAngles.x < 90.0f && transform.position.y > 3.5f )
-        {
-            moveForward = true;
+            shouldThePersonBeWalking = true;
         }
         else
         {
-            moveForward = false;
+            shouldThePersonBeWalking = false;
         }
-        if (moveForward)
+
+        //If the person is allowed to walk then move him forward by a defined speed in the same direction he is facing
+        if (shouldThePersonBeWalking)
         {
             Vector3 forward = vrCamera.TransformDirection(Vector3.forward);
-            myController.SimpleMove(forward * speed);
+            controllerObjectCorresponingToTheViewer.SimpleMove(forward * speedOfTheWalkingPerson);
         }
 	}
 }

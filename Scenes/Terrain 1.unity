@@ -1548,8 +1548,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 216509662}
-  m_LocalRotation: {x: -0.06559981, y: 0.93061733, z: 0.29432055, w: 0.20742112}
-  m_LocalPosition: {x: 66.71372, y: -97.99046, z: 195.76703}
+  m_LocalRotation: {x: -0.07118957, y: 0.89533097, z: 0.15489718, w: 0.41148683}
+  m_LocalPosition: {x: 59.210907, y: -53.66947, z: 123.24307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6654,7 +6654,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1067693968}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -340.6643, y: -229.22522, z: -11.616211}
+  m_LocalPosition: {x: 161.3628, y: 27.3125, z: 95.25879}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 374811215}
@@ -6791,8 +6791,8 @@ Transform:
   - {fileID: 56959087}
   - {fileID: 1861360629}
   - {fileID: 280360014}
-  m_Father: {fileID: 1577538097}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075962581 stripped
 GameObject:
@@ -9543,9 +9543,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrCamera: {fileID: 1597605457}
-  angle: 15
-  speed: 5
-  moveForward: 0
+  angleLimitAfterWhichPersonStartsWalking: 15
+  speedOfTheWalkingPerson: 3
+  shouldThePersonBeWalking: 0
 --- !u!143 &1559324001
 CharacterController:
   m_ObjectHideFlags: 0
@@ -9563,51 +9563,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -1, z: 0}
---- !u!1 &1577538095
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1577538097}
-  - component: {fileID: 1577538096}
-  m_Layer: 0
-  m_Name: All stones
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1577538096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577538095}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d12f1d8f728453409251f0552dde20e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stones: {fileID: 1067693968}
-  duration: 3
-  shouldCreateMoreStones: 1
-  initialPositionOfStones: {x: 0, y: 0, z: 0}
---- !u!4 &1577538097
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1577538095}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 502.0271, y: 256.53772, z: 106.875}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1067693969}
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1577592792
 Prefab:
   m_ObjectHideFlags: 0

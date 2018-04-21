@@ -1,7 +1,9 @@
 ﻿/*
+ * Module : Render Video Module
  * Author : Arpan Konar
  * Date created :13/04/2018
- * Function : Shakes the camera with required power after few seconds of starting the scene to give an experience of landslide.
+ * Function : This class belongs to the render video module.
+ *            Shakes the camera with required power after few seconds of starting the scene to give an experience of landslide.
 */
 
 using System.Collections;
@@ -10,19 +12,24 @@ using UnityEngine;
 
 //Class name
 public class CameraShake : MonoBehaviour {
+    //Camera object of the scene which defines the viewer in real worldd
+    public Transform viewer;
 
-    public Transform viewer;                                                   //Camera object of the scene which defines the viewer in real worldd
+    //Power of the shaking due to landslide
+    public float powerOfShakingDueToLandslide = 0.1f;
+    //Duration of shaking due to landslide
+    public float durationForWhichShakingDueToLandslideOccurs = 3.0f;
+    //Duration after which shaking starts due to landslide 
+    public float durationAfterWhichShakingStarts = 0.1f;
+    //Boolean variable to describe if camera should shake or not
+    public bool shouldShake = false;
+    //Boolean variable to check that it does not shake more than once
+    public bool shakedOnce = false;
+    //Key to get the landslide vibration mode from the saved player preferences
+    public static string landslideVibrationkey = "LandslideVibration";
 
-
-    public float powerOfShakingDueToLandslide = 0.1f;                         //Power of the shaking due to landslide
-	public float durationForWhichShakingDueToLandslideOccurs = 3.0f;           //Duration of shaking due to landslide
-	public float durationAfterWhichShakingStarts = 0.1f;                       //Duration after which shaking starts due to landslide 
-	public bool shouldShake = false;                                           //Boolean variable to describe if camera should shake or not 
-    public bool shakedOnce = false;                                            //Boolean variable to check that it does not shake more than once
-    public static string landslideVibrationkey = "LandslideVibration";         //Key to get the landslide vibration mode from the saved player preferences  
-
-
-    Vector3 startPositionOfTheViewer;                                          //Starting position of the viewer in the virtual world           
+    //Starting position of the viewer in the virtual world
+    Vector3 startPositionOfTheViewer;                                                     
 	
 	// Use this for initialization
 	void Start () {
@@ -74,17 +81,17 @@ public class CameraShake : MonoBehaviour {
         //Landslide vibration mode is low
         if (landslideVibrationMode == 0)
         {
-            powerOfShakingDueToLandslide = 0.1f; 
+            powerOfShakingDueToLandslide = 0.05f; 
         }
         //Landslide vibration mode is medium
         else if (landslideVibrationMode == 1)
         {
-            powerOfShakingDueToLandslide = 0.5f;
+            powerOfShakingDueToLandslide = 0.07f;
         }
         //Landslide vibration mode is high
         else
         {
-            powerOfShakingDueToLandslide = 0.9f;
+            powerOfShakingDueToLandslide = 0.09f;
         }
     }
 }
