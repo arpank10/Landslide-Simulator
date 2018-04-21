@@ -62,90 +62,92 @@ public class RenderVideo : MonoBehaviour {
 	
 	// Use this for initialization
 	void StartToInitializeRender () {
-        //Initializing the variables
+        	//Initializing the variables
 		viewer = Camera.main.transform;
 		startPositionOfTheViewer = viewer.localPosition;
-        //Setting the vibration mode of the terrain
+        	//Setting the vibration mode of the terrain
 		setVibration(PlayerPrefs.GetInt(landslideVibrationkey, 0));
-        //Getting the starting position of the person in terrain from player preferences
-        int startingPositionOfPersonInTerrain = PlayerPrefs.GetInt(startingPositionKey, 0);
+        	//Getting the starting position of the person in terrain from player preferences
+        	int startingPositionOfPersonInTerrain = PlayerPrefs.GetInt(startingPositionKey, 0);
 
-        //Setting the volume set by user in the settings to the device by getting its value from player preferences
-        audioMixer.SetFloat("volume", PlayerPrefs.GetFloat(volumeKey, 0));
+        	//Setting the volume set by user in the settings to the device by getting its value from player preferences
+        	audioMixer.SetFloat("volume", PlayerPrefs.GetFloat(volumeKey, 0));
 
-        //Setting the starting position of the person in terrain
-        setStartingPositionOfPersonInTerrain(startingPositionOfPersonInTerrain);
+        	//Setting the starting position of the person in terrain
+        	setStartingPositionOfPersonInTerrain(startingPositionOfPersonInTerrain);
     }
 	
 	// Update is called once per frame
 	void Update () {
         //If shaking is enabled, the terrain vibrates according to the vibration mode
 		if (shouldShake) {
-            //If shaking is continuing
+            		//If shaking is continuing
 			if (durationForWhichShakingDueToLandslideOccurs > 0) {
-                //The position of the viewer is changed by a vector value whose magnitude is 
+               		 	//The position of the viewer is changed by a vector value whose magnitude is 
 				//within one multiplied by the power
 				viewer.localPosition = startPositionOfTheViewer + 
 					Random.insideUnitSphere * powerOfShakingDueToLandslide;
-                //Time is reduced 
+                		//Time is reduced 
 				durationForWhichShakingDueToLandslideOccurs -= Time.deltaTime * 0.1f;
-			} else {
-                //Landslide is over, so shaked once is set to true so that it doesn't shake again
-                shakedOnce = true;
+			} 
+			else {
+                		//Landslide is over, so shaked once is set to true so that it doesn't shake again
+                		shakedOnce = true;
 				shouldShake = false;
 				viewer.localPosition = startPositionOfTheViewer;
 			}
-		} else {
-            //Wait for few seconds before starting the landslide
-            if (!shakedOnce)
-            {
-                if (durationAfterWhichShakingStarts > 0)
-                {
-                    shouldShake = false;
-                    durationAfterWhichShakingStarts -= Time.deltaTime * 0.1f;
-                }
-                //Waiting over, now landslide will start
-                else
-                {
-                    shouldShake = true;
-                }
-            }
+		} 
+		else {
+            		//Wait for few seconds before starting the landslide
+           		 if (!shakedOnce)
+            		{
+                		if (durationAfterWhichShakingStarts > 0)
+                		{
+                    			shouldShake = false;
+                    			durationAfterWhichShakingStarts -= Time.deltaTime * 0.1f;
+                		}
+                		//Waiting over, now landslide will start
+                		else
+                		{
+                    			shouldShake = true;
+                		}
+            		}
 		}
 	}
 
     //This function is used to set the vibration mode of the landslide
     public void setVibration(int landslideVibrationMode)
     {
-        Debug.Log(landslideVibrationMode.ToString());
-        //Landslide vibration mode is low
-        if (landslideVibrationMode == 0)
-        {
-            powerOfShakingDueToLandslide = 0.05f; 
-        }
-        //Landslide vibration mode is medium
-        else if (landslideVibrationMode == 1)
-        {
-            powerOfShakingDueToLandslide = 0.07f;
-        }
-        //Landslide vibration mode is high
-        else
-        {
-            powerOfShakingDueToLandslide = 0.09f;
-        }
+		Debug.Log(landslideVibrationMode.ToString());
+        	//Landslide vibration mode is low
+        	if (landslideVibrationMode == 0)
+        	{
+            		powerOfShakingDueToLandslide = 0.05f; 
+        	}
+        	//Landslide vibration mode is medium
+        	else if (landslideVibrationMode == 1)
+       		{
+            		powerOfShakingDueToLandslide = 0.07f;
+        	}
+        	//Landslide vibration mode is high
+        	else
+        	{
+            		powerOfShakingDueToLandslide = 0.09f;
+        	}
     }
 
     //This function sets the starting position of the viewer with respect to the landslide in the terrain
     public void setStartingPositionOfPersonInTerrain(int startingPositionOfPersonInTerrain)
     {
-        //If starting position set is near
-        if (startingPositionOfPersonInTerrain == 0)
-        {
-            person.transform.position = near;
-        }
-        //Else if starting position is set to far
-        else if (startingPositionOfPersonInTerrain == 1)
-        {
-            person.transform.position = far;
-        }
+        	//If starting position set is near
+        	if (startingPositionOfPersonInTerrain == 0)
+       		 {
+            		person.transform.position = near;
+        	 }
+        	//Else if starting position is set to far
+       		 else if (startingPositionOfPersonInTerrain == 1)
+        	{
+            		person.transform.position = far;
+       		 }
     }
 }
