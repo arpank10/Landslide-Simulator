@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Class name
-public class VRwalk : MonoBehaviour {
+public class HeadMovementControl : MonoBehaviour {
 
     //This is the camera object which gives us the current position and direction in which to walk
     public Transform vrCamera;
