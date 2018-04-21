@@ -17,10 +17,10 @@ public class HeadMovementControl : MonoBehaviour {
     public Transform vrCamera;
     
     //The person starts to walk in the virtual world when his head angle is more than this value
-    public float angleLimitAfterWhichPersonStartsWalking = 15.0f;
+    private float ANGLELIMITAFTERWHICHPERSONSTARTSWAKING = 15.0f;
 
     //Speed of the person walking is defined by this value
-    public float speedOfTheWalkingPerson = 3.0f;
+    private float SPEEDOFTHEWALKINGPERSON = 3.0f;
 
     //A boolean value to determine if the person should be walking or not
     public bool shouldThePersonBeWalking;
@@ -32,25 +32,25 @@ public class HeadMovementControl : MonoBehaviour {
     void Start () {
         //Getting the corresponding controller attached with the camera
         controllerObjectCorresponingToTheViewer = GetComponentInParent<CharacterController>();
-	}
+    }
 	
-	// Update is called once per frame
-	void Update () {
+   // Update is called once per frame
+    void Update () {
         //The person walks only when his head is downward by an angle more than the defined angle and if he is above river level
-        if ( vrCamera.eulerAngles.x >= angleLimitAfterWhichPersonStartsWalking && vrCamera.eulerAngles.x < 90.0f && transform.position.y > 3.5f )
+        if ( vrCamera.eulerAngles.x >= ANGLELIMITAFTERWHICHPERSONSTARTSWAKING && vrCamera.eulerAngles.x < 90.0f && transform.position.y > 3.5f )
         {
-            shouldThePersonBeWalking = true;
+            shouldThePersonBeWalking = true; // the person will start walking as the above conditions are statisfied
         }
         else
         {
-            shouldThePersonBeWalking = false;
+            shouldThePersonBeWalking = false; // the person will not be walking
         }
 
         //If the person is allowed to walk then move him forward by a defined speed in the same direction he is facing
         if (shouldThePersonBeWalking)
         {
-            Vector3 forward = vrCamera.TransformDirection(Vector3.forward);
-            controllerObjectCorresponingToTheViewer.SimpleMove(forward * speedOfTheWalkingPerson);
+            Vector3 forward = vrCamera.TransformDirection(Vector3.forward);// moves the person in forward direction
+            controllerObjectCorresponingToTheViewer.SimpleMove(forward * SPEEDOFTHEWALKINGPERSON);// moves the person with defined speed
         }
 	}
-}
+    }
