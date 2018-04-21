@@ -53,9 +53,9 @@ public class RenderVideo : MonoBehaviour {
     Vector3 far = new Vector3(110.28f, 3.995971f, 120.17f);     //Position vector corresponding to starting position far
 
     //Keys which are used to store the settings in Player preferences
-    public static string landslideIntensityKey = "LandslideIntensity";
-    public static string volumeKey = "Volume";
-    public static string startingPositionKey = "StartingPosition";
+    public static string LANDSLIDEINTENSITYKEY = "LandslideIntensity";
+    public static string VOLUMEKEY = "Volume";
+    public static string STARTINGPOSITIONKEY = "StartingPosition";
 
 
     //Starting position of the viewer in the virtual world
@@ -69,10 +69,10 @@ public class RenderVideo : MonoBehaviour {
         	//Setting the vibration mode of the terrain
 		setVibration(PlayerPrefs.GetInt(landslideVibrationkey, 0));
         	//Getting the starting position of the person in terrain from player preferences
-        	int startingPositionOfPersonInTerrain = PlayerPrefs.GetInt(startingPositionKey, 0);
+        	int startingPositionOfPersonInTerrain = PlayerPrefs.GetInt(STARTINGPOSITIONKEY, 0);
 
         	//Setting the volume set by user in the settings to the device by getting its value from player preferences
-        	audioMixer.SetFloat("volume", PlayerPrefs.GetFloat(volumeKey, 0));
+        	audioMixer.SetFloat("volume", PlayerPrefs.GetFloat(VOLUMEKEY, 0));
 
         	//Setting the starting position of the person in terrain
         	setStartingPositionOfPersonInTerrain(startingPositionOfPersonInTerrain);
