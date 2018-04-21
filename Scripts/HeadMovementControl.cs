@@ -1,9 +1,17 @@
 ﻿/*
- * Module Name : Head Movement Control module
+ * Module Name : HeadMovementControl
  * Author : Arpan Konar
- * Date created :14/04/2018
- * Function : This class is a part of head movement control module. 
+ * Date created :15/04/2018
+ * Synopsis : This class is a part of head movement control module. 
  *            This enables the person to walk in the virtual world based on an a particular angle.
+ *Function Supported : Start() initializes the controller and gets the corresponding controller attached 
+ 		      with the camera.
+		      Update() sets the update in the criteria for head movement, i.e., moving the person 
+		      in forward direction with the defined speed.
+* variables : ANGLELIMITAFTERWHICHPERSONSTARTSWAKING  (defined head angle value serving a criteria
+		for walking of person.This is defined as private as it should not be changed by other functions.)
+	      SPEEDOFTHEWALKINGPERSON  (defined speed of movement of person.private variable)
+	      shouldThePersonBeWalking  (boolean variable for walking condition check)	      
 */
 
 using System.Collections;
