@@ -11,10 +11,10 @@
  * Functions Supported : StartToInitializeRender() sets position of person in virtual world, vibration
  	     	         intensity and volume to be rendered in video appropriately.
 			 Update() sets the criteria for shaking of land simulation in the video.
-			 setVibration() sets the vibration intensity according to the user input.(vibration level 0,1,2).
+			 setVibration() sets the vibration intensity according to the user input.one of the vibration levels [0,1,2].
 			 setStartingPositionOfPersonInTerrain() sets the position of the person in the video either near 
 			 		or far to the location of occurence of landslide.
-* Input Parameters : landslideVibrationMode(integer) - vibration intensity level (0,1,2) as choosen by user.
+* Input Parameters : landslideVibrationMode(integer) - one of vibration intensity levels [0,1,2] as choosen by user.
 		     startingPositionOfPersonInTerrain(integer) - starting position of person in the rendered video
 		     				0-for near to site and 1- for far from site of occurence.
 */
