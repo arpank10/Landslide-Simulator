@@ -44,8 +44,10 @@ public class HeadMovementControl : MonoBehaviour {
 	
    // Update is called once per frame
     void Update () {
-        //The person walks only when his head is downward by an angle more than the defined angle and if he is above river level
-        if ( vrCamera.eulerAngles.x >= ANGLELIMITAFTERWHICHPERSONSTARTSWAKING && vrCamera.eulerAngles.x < 90.0f && transform.position.y > 3.5f )
+        //The person walks only when his head is downward by an angle more than the defined angle and if
+	//he is above river level
+        if ( vrCamera.eulerAngles.x >= ANGLELIMITAFTERWHICHPERSONSTARTSWAKING && vrCamera.eulerAngles.x < 90.0f 
+	    && transform.position.y > 3.5f )
         {
             shouldThePersonBeWalking = true; // the person will start walking as the above conditions are statisfied
         }
@@ -58,7 +60,8 @@ public class HeadMovementControl : MonoBehaviour {
         if (shouldThePersonBeWalking)
         {
             Vector3 forward = vrCamera.TransformDirection(Vector3.forward);// moves the person in forward direction
-            controllerObjectCorresponingToTheViewer.SimpleMove(forward * SPEEDOFTHEWALKINGPERSON);// moves the person with defined speed
+	    // moves the person with defined speed
+            controllerObjectCorresponingToTheViewer.SimpleMove(forward * SPEEDOFTHEWALKINGPERSON);
         }
 	}
     }
