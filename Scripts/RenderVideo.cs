@@ -1,9 +1,9 @@
-﻿/*
- * Module : Render Video Module
- * Author : Arpan Konar
- * Date created :13/04/2018
- * Function : This class belongs to the render video module.
- *            Shakes the camera with required power after few seconds of starting the scene to give an experience of landslide.
+/*
+    * Module : Render Video Module
+    * Author : Arpan Konar
+    * Date created :13/04/2018
+    * Func : This class belongs to the render video module.
+    *            Shakes the camera with required power after few seconds of starting the scene to give an experience of landslide.
 */
 
 using System.Collections;
@@ -47,8 +47,9 @@ public class RenderVideo : MonoBehaviour {
     //Starting position of the viewer in the virtual world
     Vector3 startPositionOfTheViewer;                                                     
 	
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start ()
+    {
         //Initializing the variables
 		viewer = Camera.main.transform;
 		startPositionOfTheViewer = viewer.localPosition;
@@ -64,8 +65,9 @@ public class RenderVideo : MonoBehaviour {
         setStartingPositionOfPersonInTerrain(startingPositionOfPersonInTerrain);
     }
 	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update ()
+    {
         //If shaking is enabled, the terrain vibrates according to the vibration mode
 		if (shouldShake) {
             //If shaking is continuing
