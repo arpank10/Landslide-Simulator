@@ -83,8 +83,10 @@ public class RenderVideo : MonoBehaviour {
 		if (shouldShake) {
             //If shaking is continuing
 			if (durationForWhichShakingDueToLandslideOccurs > 0) {
-                //The position of the viewer is changed by a vector value whose magnitude is within one multiplied by the power
-				viewer.localPosition = startPositionOfTheViewer + Random.insideUnitSphere * powerOfShakingDueToLandslide;
+                //The position of the viewer is changed by a vector value whose magnitude is 
+				//within one multiplied by the power
+				viewer.localPosition = startPositionOfTheViewer + 
+					Random.insideUnitSphere * powerOfShakingDueToLandslide;
                 //Time is reduced 
 				durationForWhichShakingDueToLandslideOccurs -= Time.deltaTime * 0.1f;
 			} else {
