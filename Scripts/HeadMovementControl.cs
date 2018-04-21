@@ -1,9 +1,17 @@
 ﻿/*
- * Module Name : Head Movement Control module
+ * Module Name : HeadMovementControl
  * Author : Arpan Konar
- * Date created :14/04/2018
- * Function : This class is a part of head movement control module. 
+ * Date created :15/04/2018
+ * Synopsis : This class is a part of head movement control module. 
  *            This enables the person to walk in the virtual world based on an a particular angle.
+ *Function Supported : Start() initializes the controller and gets the corresponding controller attached 
+ 		      with the camera.
+		      Update() sets the update in the criteria for head movement, i.e., moving the person 
+		      in forward direction with the defined speed.
+* variables : ANGLELIMITAFTERWHICHPERSONSTARTSWAKING  (defined head angle value serving a criteria
+		for walking of person.This is defined as private as it should not be changed by other functions.)
+	      SPEEDOFTHEWALKINGPERSON  (defined speed of movement of person.private variable)
+	      shouldThePersonBeWalking  (boolean variable for walking condition check)	      
 */
 
 using System.Collections;
@@ -17,10 +25,10 @@ public class HeadMovementControl : MonoBehaviour {
     public Transform vrCamera;
     
     //The person starts to walk in the virtual world when his head angle is more than this value
-    public float angleLimitAfterWhichPersonStartsWalking = 15.0f;
+    private float ANGLELIMITAFTERWHICHPERSONSTARTSWAKING = 15.0f;
 
     //Speed of the person walking is defined by this value
-    public float speedOfTheWalkingPerson = 3.0f;
+    private float SPEEDOFTHEWALKINGPERSON = 3.0f;
 
     //A boolean value to determine if the person should be walking or not
     public bool shouldThePersonBeWalking;
@@ -32,25 +40,25 @@ public class HeadMovementControl : MonoBehaviour {
     void Start () {
         //Getting the corresponding controller attached with the camera
         controllerObjectCorresponingToTheViewer = GetComponentInParent<CharacterController>();
-	}
+    }
 	
-	// Update is called once per frame
-	void Update () {
+   // Update is called once per frame
+    void Update () {
         //The person walks only when his head is downward by an angle more than the defined angle and if he is above river level
-        if ( vrCamera.eulerAngles.x >= angleLimitAfterWhichPersonStartsWalking && vrCamera.eulerAngles.x < 90.0f && transform.position.y > 3.5f )
+        if ( vrCamera.eulerAngles.x >= ANGLELIMITAFTERWHICHPERSONSTARTSWAKING && vrCamera.eulerAngles.x < 90.0f && transform.position.y > 3.5f )
         {
-            shouldThePersonBeWalking = true;
+            shouldThePersonBeWalking = true; // the person will start walking as the above conditions are statisfied
         }
         else
         {
-            shouldThePersonBeWalking = false;
+            shouldThePersonBeWalking = false; // the person will not be walking
         }
 
         //If the person is allowed to walk then move him forward by a defined speed in the same direction he is facing
         if (shouldThePersonBeWalking)
         {
-            Vector3 forward = vrCamera.TransformDirection(Vector3.forward);
-            controllerObjectCorresponingToTheViewer.SimpleMove(forward * speedOfTheWalkingPerson);
+            Vector3 forward = vrCamera.TransformDirection(Vector3.forward);// moves the person in forward direction
+            controllerObjectCorresponingToTheViewer.SimpleMove(forward * SPEEDOFTHEWALKINGPERSON);// moves the person with defined speed
         }
 	}
-}
+    }
