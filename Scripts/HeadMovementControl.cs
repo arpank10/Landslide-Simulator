@@ -10,7 +10,8 @@
 		      in forward direction with the defined speed.
 * variables : ANGLELIMITAFTERWHICHPERSONSTARTSWAKING  (defined head angle value serving a criteria
 		for walking of person.This is defined as private as it should not be changed by other functions.)
-	      SPEEDOFTHEWALKINGPERSON  (defined speed of movement.This is defined as private as it should not be changed by other functions.)
+	      SPEEDOFTHEWALKINGPERSON  (defined speed of movement.This is defined as private as it should not be 
+	      changed by other functions.)
 	      shouldThePersonBeWalking  (boolean variable for walking condition check)	      
 */
 
