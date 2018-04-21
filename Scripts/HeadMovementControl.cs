@@ -3,14 +3,14 @@
  * Author : Arpan Konar
  * Date created :15/04/2018
  * Synopsis : This class is a part of head movement control module. 
- *            This enables the person to walk in the virtual world based on an a particular angle.
+ *            This enables the person to walk in the virtual world when he bends head more than a particular angle.
  *Function Supported : Start() initializes the controller and gets the corresponding controller attached 
  		      with the camera.
 		      Update() sets the update in the criteria for head movement, i.e., moving the person 
 		      in forward direction with the defined speed.
 * variables : ANGLELIMITAFTERWHICHPERSONSTARTSWAKING  (defined head angle value serving a criteria
 		for walking of person.This is defined as private as it should not be changed by other functions.)
-	      SPEEDOFTHEWALKINGPERSON  (defined speed of movement of person.private variable)
+	      SPEEDOFTHEWALKINGPERSON  (defined speed of movement.This is defined as private as it should not be changed by other functions.)
 	      shouldThePersonBeWalking  (boolean variable for walking condition check)	      
 */
 
@@ -44,9 +44,10 @@ public class HeadMovementControl : MonoBehaviour {
 	
    // Update is called once per frame
     void Update () {
-        //The person walks only when his head is downward by an angle more than the defined angle and if
+        //The person walks only when his head is downward by an angle more than the 
+	// defined angle(ANGLELIMITAFTERWHICHPERSONSTARTSWAKING) and if
 	//he is above river level
-        if ( vrCamera.eulerAngles.x >= ANGLELIMITAFTERWHICHPERSONSTARTSWAKING && vrCamera.eulerAngles.x < 90.0f 
+        if ( vrCamera.eulerAngles.x > ANGLELIMITAFTERWHICHPERSONSTARTSWAKING && vrCamera.eulerAngles.x < 90.0f 
 	    && transform.position.y > 3.5f )
         {
             shouldThePersonBeWalking = true; // the person will start walking as the above conditions are statisfied
@@ -59,9 +60,8 @@ public class HeadMovementControl : MonoBehaviour {
         //If the person is allowed to walk then move him forward by a defined speed in the same direction he is facing
         if (shouldThePersonBeWalking)
         {
-            Vector3 forward = vrCamera.TransformDirection(Vector3.forward);// moves the person in forward direction
-	    // moves the person with defined speed
-            controllerObjectCorresponingToTheViewer.SimpleMove(forward * SPEEDOFTHEWALKINGPERSON);
+            Vector3 forward = vrCamera.TransformDirection(Vector3.forward);// moves the person in forward directio
+            controllerObjectCorresponingToTheViewer.SimpleMove(forward * SPEEDOFTHEWALKINGPERSON);// moves the person with defined speed
         }
 	}
     }
