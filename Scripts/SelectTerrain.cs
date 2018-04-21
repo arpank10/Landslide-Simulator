@@ -1,9 +1,19 @@
 ﻿/*
- * Module Name : Select Terrain module
+ * Module Name : SelectTerrain
  * Author : Arpan Konar
  * Date created :12/04/2018
- * Function : This module starts the terrain experience based on the terrain selected.
+ * Modification History : -12/04/2018 (created the startExperienceWithSelectedTerrain() and
+ 			   switchToVrAndStartTerrainExperience() functions.)
+			   -14/04/2018 (added the condition for excluding those VR devices 
+			   which do not support reloading)		   
+ * Synopsis : This module starts the terrain experience based on the terrain selected.
  *            Before starting the experience the VR mode is switched on.
+ * Functions Supported : For a given index of terrain, function call to StartCoroutine() is done for starting the
+ 			 User visual experience by switching to VR mode.
+			 Additionally,this module also checks whether that VR device support reloading when 
+			 already active otherwise it waits for one frame after performing the loadDevice() call.
+			 SceneManager() function of unity functions to load the video as per the index choosen.
+* Input Parameters : indexOfTerrain - index of terrain choosen by user on display screen.			 
 */
 
 using System.Collections;
@@ -16,7 +26,7 @@ using UnityEngine.XR;
 public class SelectTerrain : MonoBehaviour {
 
     //This function starts the experience corresponding to the selected terrain in the user view.
-	public void startExperienceWithSelectedTerrain(int indexOfTerrain)
+    public void startExperienceWithSelectedTerrain(int indexOfTerrain)
     {
         //This command starts a coroutine to switch to VR mode and start the corresponding experience
         StartCoroutine(switchToVrAndStartTerrainExperience(indexOfTerrain));
