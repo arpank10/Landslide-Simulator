@@ -1,8 +1,25 @@
 ﻿/*
- * Module Name : Settings module
+ * Module Name : SetSettings
  * Author : Arpan Konar
- * Date created :12/04/2018
- * Function : This function saves the corresponding settings of the terrain as selected by the user.
+ * Date created :14/04/2018
+ * Synopsis : User's choice of video (based on volume,landslide intensity,proximity to site,vibration) of occurences 
+               to be rendered is set by this module and then the SceneManager() function of Unity to invoked for being
+               ready to display video.
+             
+ * Functions Supported : setVolume() sets the preferred volume to be used in the rendered video
+                         for output.
+                         setIntensityOfLandslide() sets the intensity of landslide selected by user
+                         i.e.,landslide intensity level(0,1,2)
+                         setVibrationOfLandslide() sets the vibrational intensity to be used in the video 
+                         output.
+                         setStartingPositionOfViewerInTerrain() sets the choice of video to be viewed by user
+                         having two discrete options i.e Near or Far (to the landslide occurence). 
+                         Save() updates the preference of user choices entered and SceneMnager() method of
+                         Unity to load the video.
+ * Input Parameters :  volume (float type set by the slider on the display screen)
+                       indexOfIntensityOption (integer [0,1,2] for the intensity of landslide)
+                       indexOfVibrationOption (integer [0,1,2] for the intensity of vibration)
+                       
 */
 
 using System.Collections;
@@ -30,15 +47,15 @@ public class SettingsMenu : MonoBehaviour {
     }
 
     //Function to save the intensity of landslide from the dropdown menu in player preferences
-    public void setIntensityOfLandslide(int indexOfOption)
+    public void setIntensityOfLandslide(int indexOfIntensityOption)
     {
-        PlayerPrefs.SetInt(landslideIntensityKey, indexOfOption);
+        PlayerPrefs.SetInt(landslideIntensityKey, indexOfIntensityOption);
     }
 
     //Function to save the vibration of landslide from the dropdown menu in player preferences
-    public void setVibrationOfLandslide(int indexOfOption)
+    public void setVibrationOfLandslide(int indexOfVibrationOption)
     {
-        PlayerPrefs.SetInt(landslideVibrationkey, indexOfOption);
+        PlayerPrefs.SetInt(landslideVibrationkey, indexOfVibrationOption);
     }
 
     //Function to save the starting position of the user in landslide terrain in player preferences
