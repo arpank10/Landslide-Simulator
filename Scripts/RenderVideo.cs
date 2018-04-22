@@ -61,7 +61,7 @@ public class RenderVideo : MonoBehaviour {
     //Starting position of the viewer in the virtual world
     Vector3 startPositionOfTheViewer;                                                     
 	
-	// Use this for initialization
+	// Inbuilt function of Unity Used for initialization of controller object.
 	void Start () {
         	//Initializing the variables
 		viewer = Camera.main.transform;
@@ -77,7 +77,7 @@ public class RenderVideo : MonoBehaviour {
         	//Setting the starting position of the person in terrain
         	setStartingPositionOfPersonInTerrain(startingPositionOfPersonInTerrain);
     }
-	
+	//Inbuilt function of unity used for defining shaking criteria of the land in the video.
 	// Update is called once per frame
 	void Update () {
         //If shaking is enabled, the terrain vibrates according to the vibration mode
