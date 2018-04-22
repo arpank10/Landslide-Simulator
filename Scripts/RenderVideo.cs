@@ -47,13 +47,12 @@ public class RenderVideo : MonoBehaviour {
     //Boolean variable to check that it does not shake more than once
     public bool shakedOnce = false;
     //Key to get the landslide vibration mode from the saved player preferences
-    public static string landslideVibrationkey = "LandslideVibration";
+    public static string LANDSLIDEVIBRATIONKEY = "LandslideVibration";
 
     Vector3 near = new Vector3(136.94f, 3.995971f, 101.5f);     //Position vector corresponding to starting position near
     Vector3 far = new Vector3(110.28f, 3.995971f, 120.17f);     //Position vector corresponding to starting position far
 
     //Keys which are used to store the settings in Player preferences
-    public static string LANDSLIDEINTENSITYKEY = "LandslideIntensity";
     public static string VOLUMEKEY = "Volume";
     public static string STARTINGPOSITIONKEY = "StartingPosition";
 
@@ -61,60 +60,65 @@ public class RenderVideo : MonoBehaviour {
     //Starting position of the viewer in the virtual world
     Vector3 startPositionOfTheViewer;                                                     
 	
-	// Inbuilt function of Unity Used for initialization of controller object.
-	void Start () {
-        	//Initializing the variables
-		viewer = Camera.main.transform;
-		startPositionOfTheViewer = viewer.localPosition;
-        	//Setting the vibration mode of the terrain
-		setVibration(PlayerPrefs.GetInt(landslideVibrationkey, 0));
-        	//Getting the starting position of the person in terrain from player preferences
-        	int startingPositionOfPersonInTerrain = PlayerPrefs.GetInt(STARTINGPOSITIONKEY, 0);
-
-        	//Setting the volume set by user in the settings to the device by getting its value from player preferences
-        	audioMixer.SetFloat("volume", PlayerPrefs.GetFloat(VOLUMEKEY, 0));
-
-        	//Setting the starting position of the person in terrain
-        	setStartingPositionOfPersonInTerrain(startingPositionOfPersonInTerrain);
+    // Inbuilt function of Unity Used for initialization of controller object.
+    void Start () 
+    {
+        //Initializing the variables
+	viewer = Camera.main.transform;
+	startPositionOfTheViewer = viewer.localPosition;
+        //Setting the vibration mode of the terrain
+	setVibration(PlayerPrefs.GetInt(LANDSLIDEVIBRATIONKEY, 0));
+        //Getting the starting position of the person in terrain from player preferences
+        int startingPositionOfPersonInTerrain = PlayerPrefs.GetInt(STARTINGPOSITIONKEY, 0);
+       	//Setting the volume set by user in the settings to the device by getting its value from player preferences
+       	audioMixer.SetFloat("volume", PlayerPrefs.GetFloat(VOLUMEKEY, 0));
+       	//Setting the starting position of the person in terrain
+       	setStartingPositionOfPersonInTerrain(startingPositionOfPersonInTerrain);
     }
-	//Inbuilt function of unity used for defining shaking criteria of the land in the video.
-	// Update is called once per frame
-	void Update () {
+    
+    //Inbuilt function of unity used for defining shaking criteria of the land in the video.
+    // Update is called once per frame
+    void Update () 
+    {
         //If shaking is enabled, the terrain vibrates according to the vibration mode
-		if (shouldShake) {
-            		//If shaking is continuing
-			if (durationForWhichShakingDueToLandslideOccurs > 0) {
-               		 	//The position of the viewer is changed by a vector value whose magnitude is 
-				//within one multiplied by the power
-				viewer.localPosition = startPositionOfTheViewer + 
-					Random.insideUnitSphere * powerOfShakingDueToLandslide;
-                		//Time is reduced 
-				durationForWhichShakingDueToLandslideOccurs -= Time.deltaTime * 0.1f;
-			} 
-			else {
-                		//Landslide is over, so shaked once is set to true so that it doesn't shake again
-                		shakedOnce = true;
-				shouldShake = false;
-				viewer.localPosition = startPositionOfTheViewer;
-			}
+	if (shouldShake) 
+	{
+		//If shaking is continuing
+		if (durationForWhichShakingDueToLandslideOccurs > 0) 
+		{
+               	 	//The position of the viewer is changed by a vector value whose magnitude is 
+			//within one multiplied by the power
+			viewer.localPosition = startPositionOfTheViewer + 
+			Random.insideUnitSphere * powerOfShakingDueToLandslide;
+                	//Time is reduced 
+			durationForWhichShakingDueToLandslideOccurs -= Time.deltaTime * 0.1f;
 		} 
-		else {
-            		//Wait for few seconds before starting the landslide
-           		 if (!shakedOnce)
-            		{
-                		if (durationAfterWhichShakingStarts > 0)
-                		{
-                    			shouldShake = false;
-                    			durationAfterWhichShakingStarts -= Time.deltaTime * 0.1f;
-                		}
-                		//Waiting over, now landslide will start
-                		else
-                		{
-                    			shouldShake = true;
-                		}
-            		}
+		else 
+		{
+                	//Landslide is over, so shaked once is set to true so that it doesn't shake again
+                	shakedOnce = true;
+			shouldShake = false;
+			viewer.localPosition = startPositionOfTheViewer;
 		}
+	} 
+	else 
+	{
+        	//Wait for few seconds before starting the landslide
+        	if (!shakedOnce)
+            	{
+                	if (durationAfterWhichShakingStarts > 0)
+                	{
+                		shouldShake = false;
+                    		durationAfterWhichShakingStarts -= Time.deltaTime * 0.1f;
+                	}
+                	//Waiting over, now landslide will start
+                	else
+                	{
+                    		shouldShake = true;
+                	}
+            	}
 	}
+    }
 
     //This function is used to set the vibration mode of the landslide
     public void setVibration(int landslideVibrationMode)
@@ -146,8 +150,8 @@ public class RenderVideo : MonoBehaviour {
             		person.transform.position = near;
         	 }
         	//Else if starting position is set to far
-       		 else if (startingPositionOfPersonInTerrain == 1)
-        	{
+       		else if (startingPositionOfPersonInTerrain == 1)
+        	 { 
             		person.transform.position = far;
        		 }
     }
