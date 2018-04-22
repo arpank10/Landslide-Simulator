@@ -32,7 +32,6 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour {
 
     //Keys corresponding to which the settings are saved in player preferences
-    public static string landslideIntensityKey = "LandslideIntensity";
     public static string landslideVibrationkey = "LandslideVibration";
     public static string volumeKey = "Volume";
     public static string startingPositionKey = "StartingPosition";
@@ -44,12 +43,6 @@ public class SettingsMenu : MonoBehaviour {
     public void setVolume(float volume)
     {
         PlayerPrefs.SetFloat(volumeKey, volume);
-    }
-
-    //Function to save the intensity of landslide from the dropdown menu in player preferences
-    public void setIntensityOfLandslide(int indexOfIntensityOption)
-    {
-        PlayerPrefs.SetInt(landslideIntensityKey, indexOfIntensityOption);
     }
 
     //Function to save the vibration of landslide from the dropdown menu in player preferences
