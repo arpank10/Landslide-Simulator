@@ -29,10 +29,10 @@ public class HeadMovementControl : MonoBehaviour {
     private float ANGLELIMITAFTERWHICHPERSONSTARTSWAKING = 15.0f;
 
     //Speed of the person walking is defined by this value
-    private float speedofthewalkingperson = 3.0f;
+    private float SPEEDOFTHEWALKINGPERSON = 3.0f;
 
     //A boolean value to determine if the person should be walking or not
-    public bool shouldThePersonBeWalking;
+    public bool shouldThePersonBeWalking = false;
 
     //The character controller which is to be transformed
     private CharacterController controllerObjectCorresponingToTheViewer;
