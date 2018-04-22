@@ -37,12 +37,13 @@ public class HeadMovementControl : MonoBehaviour {
     //The character controller which is to be transformed
     private CharacterController controllerObjectCorresponingToTheViewer;
 
-    // Use this for initialization
+    // Start() function is the inbuilt function of Unity used for initialization of controller object.
     void Start () {
         //Getting the corresponding controller attached with the camera
         controllerObjectCorresponingToTheViewer = GetComponentInParent<CharacterController>();
     }
-	
+   //Update() function is the inbuilt function of unity which sets the walking criterias of the person 
+   //in the video.
    // Update is called once per frame
     void Update () {
         //The person walks only when his head is downward by an angle more than the 
