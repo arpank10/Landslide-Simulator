@@ -32,7 +32,8 @@ public class SelectTerrain : MonoBehaviour {
         StartCoroutine(switchToVrAndStartTerrainExperience(indexOfTerrain));
     }
 
-    //This function is user to turn on the VR mode before the experience begins.
+    //This function is user to turn on the VR mode before the experience begins.It is a coroutine in unity which has the ability to 
+    //control the execution of the frame.	
     IEnumerator switchToVrAndStartTerrainExperience(int indexOfTerrain)
     {
         // Device names are lowercase, as returned by `XRSettings.supportedDevices`.
